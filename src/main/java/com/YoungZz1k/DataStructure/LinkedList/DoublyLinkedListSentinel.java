@@ -45,21 +45,7 @@ public class DoublyLinkedListSentinel implements Iterable<Integer> {
     }
 
     /**
-     * 遍历链表1
-     */
-    public void loop1(Consumer<Integer> consumer) {
-
-    }
-
-    /**
-     * 遍历链表2
-     */
-    public void loop2(Consumer<Integer> consumer) {
-
-    }
-
-    /**
-     * 遍历链表3
+     * 遍历链表
      */
     @Override
     public Iterator<Integer> iterator() {
@@ -78,13 +64,6 @@ public class DoublyLinkedListSentinel implements Iterable<Integer> {
                 return v;
             }
         };
-    }
-
-    /**
-     * 遍历链表4
-     */
-    public void loop3() {
-
     }
 
     /**
