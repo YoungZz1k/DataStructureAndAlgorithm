@@ -79,13 +79,20 @@ public class SinglyLinkedList implements Iterable<Integer> {
     }
 
     /**
-     * 遍历链表4
+     * 遍历链表4 递归
      */
     public void loop3() {
         Node node = head;
-//        if (node != null){
-//
-//        }
+        recursion(node);
+    }
+
+    // 递归函数
+    private void recursion(Node current){ // 某个节点对应的操作
+        if (current == null){
+            return;
+        }
+        System.out.println(current.value);
+        recursion(current.next);
     }
 
     /**

@@ -1,4 +1,4 @@
-package com.YoungZz1k.LinkedList;
+package com.YoungZz1k.DataStructure.LinkedList;
 
 import com.YoungZz1k.DataStructure.LinkedList.SinglyLinkedList;
 import org.junit.jupiter.api.Test;
@@ -51,6 +51,21 @@ public class TestSinglyLinkedList {
         for (Integer value : singlyLinkedList) {
             System.out.println(value);
         }
+    }
+
+
+    /**
+     * 遍历链表4 递归
+     */
+    @Test
+    public void test9(){ //
+        SinglyLinkedList singlyLinkedList = new SinglyLinkedList();
+        singlyLinkedList.addFirst(1);
+        singlyLinkedList.addFirst(2);
+        singlyLinkedList.addFirst(3);
+        singlyLinkedList.addFirst(4);
+
+        singlyLinkedList.loop3();
     }
 
     /**

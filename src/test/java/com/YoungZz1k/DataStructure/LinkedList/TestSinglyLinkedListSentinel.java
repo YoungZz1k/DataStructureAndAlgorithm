@@ -1,4 +1,4 @@
-package com.YoungZz1k.LinkedList;
+package com.YoungZz1k.DataStructure.LinkedList;
 
 import com.YoungZz1k.DataStructure.LinkedList.SinglyLinkedListSentinel;
 import com.YoungZz1k.DataStructure.LinkedList.SinglyLinkedListSentinel;
