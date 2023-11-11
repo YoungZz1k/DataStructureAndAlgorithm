@@ -1,5 +1,8 @@
 package com.YoungZz1k.DataStructure.Factorial;
 
+import java.util.Arrays;
+import java.util.LinkedList;
+
 /**
  * 递归
  */
@@ -95,6 +98,7 @@ public class Factorial {
 
     /**
      * 斐波那契数列 多路递归
+     *
      * @param n
      * @return
      */
@@ -106,6 +110,57 @@ public class Factorial {
             return 1;
         }
 
-        return fibonacci(n - 1) + fibonacci( n - 2);
+        return fibonacci(n - 1) + fibonacci(n - 2);
+    }
+
+    /**
+     * 斐波那契数列  剪枝
+     *
+     * @param n
+     * @return
+     */
+    public static int fibo(int n) {
+        int[] cache = new int[n + 1];
+        Arrays.fill(cache, -1);
+        cache[0] = 0;
+        cache[1] = 1;
+        return newFibonacci(n, cache);
+    }
+
+    /**
+     * 斐波那契数列 剪枝
+     *
+     * @param n
+     * @return
+     */
+    public static int newFibonacci(int n, int[] cache) {
+        if (cache[n] != -1) {
+            return cache[n];
+        }
+        cache[n] = newFibonacci(n - 1, cache) + newFibonacci(n - 2, cache);// 存入数组
+        return cache[n];
+    }
+
+    /**
+     * 汉诺塔
+     *
+     * @param n 圆盘个数
+     * @param a 源柱子
+     * @param b 中间柱子
+     * @param c 目标柱子
+     */
+    public static void HanoiTower(int n, LinkedList<Integer> a,
+                                  LinkedList<Integer> b,
+                                  LinkedList<Integer> c) {
+        if (n == 0){
+            return;
+        }
+        HanoiTower(n - 1, a, c, b);
+        c.addLast(a.removeLast());
+        System.out.println("----------------");
+        System.out.println(a);
+        System.out.println(b);
+        System.out.println(c);
+        HanoiTower(n - 1, b, a, c);
     }
 }

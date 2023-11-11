@@ -3,8 +3,10 @@ package com.YoungZz1k.DataStructure.Factorial;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import java.io.IOException;
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.LinkedList;
 
 
 public class TestFactorial {
@@ -67,7 +69,31 @@ public class TestFactorial {
      */
     @Test
     @DisplayName("斐波那契数列")
-    public void test6(){
-        System.out.println(Factorial.fibonacci(8));
+    public void test6() {
+        long start = System.currentTimeMillis();
+        System.out.println(Factorial.fibonacci(40));
+        long end = System.currentTimeMillis();
+        System.out.println(end - start);
+        System.out.println(Factorial.fibo(40));
+    }
+
+    /**
+     * 汉诺塔
+     */
+    @Test
+    @DisplayName("汉诺塔")
+    public void test7() {
+        LinkedList<Integer> a = new LinkedList<>();
+        LinkedList<Integer> b = new LinkedList<>();
+        LinkedList<Integer> c = new LinkedList<>();
+        for (int i = 3; i > 0; i--) {
+            a.addLast(i);
+        }
+        System.out.println(a);
+        System.out.println(b);
+        System.out.println(c);
+
+        Factorial.HanoiTower(3, a, b, c);
+
     }
 }
