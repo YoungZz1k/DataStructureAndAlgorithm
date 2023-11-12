@@ -20,7 +20,6 @@ public class TestFactorial {
         System.out.println(Factorial.f(5));
     }
 
-
     /**
      * 递归输出逆序字符串
      */
@@ -95,5 +94,42 @@ public class TestFactorial {
 
         Factorial.HanoiTower(3, a, b, c);
 
+    }
+
+    /**
+     * 求杨辉三角某一行某一列的值
+     */
+    @Test
+    @DisplayName("杨辉三角求某一行某一列的值")
+    public void test8(){
+        System.out.println(Factorial.PascalTriangle(4, 2));
+    }
+
+    /**
+     * 打印杨辉三角
+     */
+    @Test
+    @DisplayName("打印杨辉三角")
+    public void test9(){
+        Factorial.printPascalTriangle(10);
+    }
+
+
+    /**
+     * 打印杨辉三角 优化版
+     */
+    @Test
+    @DisplayName("打印杨辉三角优化版")
+    public void test10(){
+        Factorial.printPascalTriangle1(5);
+    }
+
+    /**
+     * 打印杨辉三角 优化2
+     */
+    @Test
+    @DisplayName("打印杨辉三角优化版")
+    public void test11(){
+        Factorial.printPascalTriangle2(5);
     }
 }
