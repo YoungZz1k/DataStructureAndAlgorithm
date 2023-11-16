@@ -2,6 +2,9 @@ package com.YoungZz1k.LeetCode;
 
 import com.YoungZz1k.DataStructure.LinkedList.ListNode;
 
+/**
+ * 合并两个有序链表
+ */
 public class LeetCode21 {
 
 
