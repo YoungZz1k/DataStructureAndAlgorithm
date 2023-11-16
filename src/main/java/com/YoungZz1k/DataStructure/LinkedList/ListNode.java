@@ -14,6 +14,34 @@ public class ListNode {
         this.next = next;
     }
 
+    /**
+     * 批量头插
+     * @param elements
+     * @return
+     */
+    public static ListNode insertHead(int...elements){
+        ListNode p = null;
+        for (int element : elements) {
+            p = new ListNode(element,p);
+        }
+        return p;
+    }
+
+    /**
+     * 批量尾插
+     * @param elements
+     * @return
+     */
+    public static ListNode insertTail(int...elements){
+        ListNode head = new ListNode(-1,null);
+        ListNode p1 = head;
+        for (int element : elements) {
+            p1.next = new ListNode(element,null);
+            p1 = p1.next;
+        }
+        return head.next;
+    }
+
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder(64);
