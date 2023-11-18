@@ -1,4 +1,4 @@
-package com.YoungZz1k.LeetCode;
+package com.YoungZz1k.LeetCode.LinkedList;
 
 import com.YoungZz1k.DataStructure.LinkedList.ListNode;
 
