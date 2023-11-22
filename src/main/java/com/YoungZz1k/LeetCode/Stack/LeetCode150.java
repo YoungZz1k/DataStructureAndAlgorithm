@@ -39,7 +39,6 @@ public class LeetCode150 {
                 }
             }
         }
-
         return Integer.parseInt(stack.pop());
     }
     public static void main(String[] args) {
