@@ -74,7 +74,7 @@ public class BlockingQueue1<E> implements BlockingQueue<E> {
                 head = 0;
             }
             size--;
-            headWaits.signal();
+            tailWaits.signal();
             return e;
         }finally {
             lock.unlock();
