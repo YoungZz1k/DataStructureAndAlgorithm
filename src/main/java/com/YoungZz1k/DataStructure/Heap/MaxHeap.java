@@ -147,11 +147,12 @@ public class MaxHeap {
     public static void main(String[] args) {
         int[] array = new int[]{1, 3, 5, 7, 9, 4, 2, 8};
         MaxHeap maxHeap = new MaxHeap(array);
-        System.out.println(Arrays.toString(maxHeap.array));
-        maxHeap.replace(20);
-        System.out.println("replace : " + Arrays.toString(maxHeap.array));
-        maxHeap.offer(15);
-        System.out.println("offer : " + Arrays.toString(maxHeap.array));
-        System.out.println("poll : " + maxHeap.poll());
+        // 堆排序 每次把堆顶交换到最底下，然后对堆顶元素做下潜恢复堆
+        while (maxHeap.size > 1){
+            maxHeap.swap(0,maxHeap.size - 1);
+            maxHeap.size--;
+            maxHeap.down(0);
+        }
+        System.out.println(Arrays.toString(array));
     }
 }
