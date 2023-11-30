@@ -116,7 +116,7 @@ public class MinHeap {
     private void up(int offered) {
         int child = size;
         while (child > 0){
-            int parent = (size - 1) / 2;
+            int parent = (child - 1) / 2;
             if (array[parent] > offered){
                 array[child] = array[parent];
             }else{
