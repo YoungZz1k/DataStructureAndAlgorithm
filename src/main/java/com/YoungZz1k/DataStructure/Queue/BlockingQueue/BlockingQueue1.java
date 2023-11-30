@@ -5,6 +5,10 @@ import java.util.concurrent.TimeUnit;
 import java.util.concurrent.locks.Condition;
 import java.util.concurrent.locks.ReentrantLock;
 
+/**
+ * 单锁阻塞队列
+ * @param <E>
+ */
 public class BlockingQueue1<E> implements BlockingQueue<E> {
 
     private final E[] array;
