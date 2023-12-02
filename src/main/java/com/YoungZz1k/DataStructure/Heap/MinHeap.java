@@ -9,6 +9,11 @@ public class MinHeap {
     int[] array;
     int size;
 
+
+    public int getSize() {
+        return size;
+    }
+
     public MinHeap(int capacity) {
         array = new int[capacity];
     }
