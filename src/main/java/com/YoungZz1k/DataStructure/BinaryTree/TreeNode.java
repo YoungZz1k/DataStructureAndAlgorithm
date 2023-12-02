@@ -4,9 +4,9 @@ import sun.reflect.generics.tree.Tree;
 
 public class TreeNode {
 
-    private TreeNode left;
-    private int val;
-    private TreeNode right;
+    public TreeNode left;
+    public int val;
+    public TreeNode right;
 
     public TreeNode(TreeNode left, int val,  TreeNode right) {
         this.left = left;
