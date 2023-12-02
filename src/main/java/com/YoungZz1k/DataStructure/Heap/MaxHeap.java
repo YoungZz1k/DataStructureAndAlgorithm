@@ -10,6 +10,10 @@ public class MaxHeap {
     int[] array;
     int size;
 
+    public int getSize() {
+        return size;
+    }
+
     public MaxHeap(int capacity) {
         array = new int[capacity];
     }
