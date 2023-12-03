@@ -12,10 +12,11 @@ public class TreeTraversal {
 
     /**
      * 前序遍历
+     *
      * @param node 根节点
      */
-    static void preOrder(TreeNode node){
-        if (node == null){
+    static void preOrder(TreeNode node) {
+        if (node == null) {
             return;
         }
         System.out.print(node.val + "\t");
@@ -25,10 +26,11 @@ public class TreeTraversal {
 
     /**
      * 中序遍历
+     *
      * @param node 根节点
      */
-    static void inOrder(TreeNode node){
-        if (node == null){
+    static void inOrder(TreeNode node) {
+        if (node == null) {
             return;
         }
         inOrder(node.left);// 左
@@ -38,10 +40,11 @@ public class TreeTraversal {
 
     /**
      * 后序遍历
+     *
      * @param node 根节点
      */
-    static void postOrder(TreeNode node){
-        if (node == null){
+    static void postOrder(TreeNode node) {
+        if (node == null) {
             return;
         }
         postOrder(node.left);// 左
@@ -50,24 +53,52 @@ public class TreeTraversal {
     }
 
     /**
-     * 前序遍历(非递归)
+     * 前序、中序遍历(非递归)
      * @param node
      */
-    static void preOrder1(TreeNode node){
+    static void preOrder1(TreeNode node) {
         LinkedList<TreeNode> stack = new LinkedList<>();
         TreeNode curr = node;
-        while (curr != null || !stack.isEmpty()){
-            if (curr != null){
+        while (curr != null || !stack.isEmpty()) {
+            if (curr != null) {
                 System.out.println("去 : " + curr.val);// 前序遍历
                 stack.push(curr);// 压入走过的节点，方便回溯
                 curr = curr.left;//
-            }else{
+            } else {
                 TreeNode pop = stack.pop();// 弹栈刚好是中序遍历
 //                System.out.println("回 : " + pop.val);
                 curr = pop.right;// 左边为空时 取出上一步的右孩子赋给curr
             }
         }
     }
+
+    /**
+     * 后序遍历(非递归)
+     *
+     * @param node
+     */
+    static void postOrder1(TreeNode node) {
+        LinkedList<TreeNode> stack = new LinkedList<>();
+        TreeNode curr = node;
+        TreeNode pop = null; // 上一次弹栈的元素
+        while (curr != null || !stack.isEmpty()) {
+            if (curr != null) {
+//                System.out.println("去 : " + curr.val);// 前序遍历
+                stack.push(curr);// 压入走过的节点，方便回溯
+                curr = curr.left;//
+            } else {
+                TreeNode peek = stack.peek();
+                if (peek.right == null || pop == peek.right) {
+                     pop = stack.pop();// 弹栈刚好是中序遍历
+                    System.out.println("回 : " + pop.val);
+                } else {
+                    curr = peek.right;// 左边为空时 取出上一步的右孩子赋给curr
+                }
+            }
+        }
+    }
+
+
 
     //       1
     //      / \
@@ -76,9 +107,9 @@ public class TreeTraversal {
     //   4    5   6
     public static void main(String[] args) {
         TreeNode treeNode = new TreeNode(
-                new TreeNode(new TreeNode(4),2,null),
+                new TreeNode(new TreeNode(4), 2, null),
                 1,
-                new TreeNode(new TreeNode(5),3,new TreeNode(6))
+                new TreeNode(new TreeNode(5), 3, new TreeNode(6))
         );
 //        // 前序遍历 1 2 4 3 5 6
 //        preOrder(treeNode);
@@ -88,6 +119,6 @@ public class TreeTraversal {
 //        System.out.println();
 //        // 后序遍历 4 2 5 6 3 1
 //        postOrder(treeNode);
-        preOrder1(treeNode);
+        allOrder1(treeNode);
     }
 }
