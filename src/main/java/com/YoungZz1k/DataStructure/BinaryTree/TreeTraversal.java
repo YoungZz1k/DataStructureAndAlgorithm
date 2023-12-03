@@ -99,6 +99,44 @@ public class TreeTraversal {
     }
 
 
+    /**
+     * 前中后遍历(非递归)
+     *
+     * @param node
+     */
+    static void allOrder1(TreeNode node) {
+        LinkedList<TreeNode> stack = new LinkedList<>();
+        TreeNode curr = node;
+        TreeNode pop = null; // 上一次弹栈的元素
+        while (curr != null || !stack.isEmpty()) {
+            if (curr != null) {
+                System.out.println("前序 : " + curr.val);// 前序遍历
+                stack.push(curr);// 压入走过的节点，方便回溯
+                // 待处理左子树
+                curr = curr.left;//
+            } else {
+                TreeNode peek = stack.peek();
+                // 没有右子树
+                if (peek.right == null ) {
+                    pop = stack.pop();
+                    System.out.println("中序 : " + pop.val);
+                    System.out.println("后序 : " + pop.val);
+                }
+                // 右子树处理完成
+                else if (pop == peek.right) {
+                    pop = stack.pop();
+                    System.out.println("后序 : " + pop.val);
+                }
+                // 待处理右子树
+                else {
+                    System.out.println("中序 : " + stack.peek().val);
+                    curr = peek.right;// 左边为空时 取出上一步的右孩子赋给curr
+                }
+            }
+        }
+    }
+
+
 
     //       1
     //      / \
