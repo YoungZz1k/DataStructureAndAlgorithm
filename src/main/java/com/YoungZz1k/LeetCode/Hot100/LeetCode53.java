@@ -22,9 +22,11 @@ public class LeetCode53 {
         int max = nums[0];
         int sum = 0;
         for (int i = 0; i < len; i++) {
+            // sum > 0 说明对和有增大的趋势 进行累加
             if (sum > 0){
                 sum+=nums[i];
             }else{
+                // 小于0 将和更新为当前值
                 sum = nums[i];
             }
             max = Math.max(sum,max);
