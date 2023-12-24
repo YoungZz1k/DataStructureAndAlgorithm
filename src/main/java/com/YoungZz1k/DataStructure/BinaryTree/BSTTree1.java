@@ -86,7 +86,7 @@ public class BSTTree1 {
         return min(root);
     }
 
-    public Object min(BSTNode node){
+    public Object min(BSTNode node) {
         if (node == null) {
             return null;
         }
@@ -222,6 +222,68 @@ public class BSTTree1 {
      * @return
      */
     public Object delete(int key) {
+        BSTNode node = root;
+        BSTNode parent = null;
+        while (node != null) {
+            if (node.key < key) {
+                parent = node;
+                node = node.right;
+            } else if (node.key > key) {
+                parent = node;
+                node = node.left;
+            } else {
+                break;
+            }
+        }
+        // 没找到
+        if (node == null) {
+            return null;
+        }
+        // 找到 删除
+        if (node.left == null ) {
+            // 情况一 删除的节点没有左孩子 有右孩子
+            shift(parent,node,node.right);
+        } else if (node.right == null) {
+            // 情况二 删除的节点没有右孩子 有左孩子
+            shift(parent,node,node.left);
+        }else{
+            // 情况四 左右孩子都有
+            // 1.找被删除节点的后继
+            BSTNode s = node.right;
+            BSTNode sParent = node;
+            while (s.left != null){
+                sParent = s;
+                s = s.left;
+            }
+            if (sParent != node){//不相邻
+                // 2.删除和后继不相邻，处理后继节点的孩子
+                shift(sParent,s,s.right);// 不会有左孩子
+                s.right = node.right;
+            }
+            // 3.后继取代被删除节点
+            shift(parent,node,s);
+            s.left = node.left;
+        }
+
         return null;
+    }
+
+    /**
+     * 删除调整树结构方法
+     * @param parent 被删除节点的父节点
+     * @param deleted 被删除节点
+     * @param child 被顶上去的节点
+     */
+    private void shift(BSTNode parent,BSTNode deleted,BSTNode child){
+        if (parent == null){
+            // parent == null 顶上去的节点成为root
+            root = child;
+        }else if (deleted == parent.left){
+            // 被顶上去的节点是被删除的左孩子
+            parent.left = child;
+        }else{
+            // 被顶上去的节点是被删除的右孩子
+            parent.right = child;
+        }
     }
 }
