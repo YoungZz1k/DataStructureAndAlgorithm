@@ -21,5 +21,9 @@ public class TestBSTTree1 {
         System.out.println(bstTree1.get(3).toString());
         System.out.println(bstTree1.min());
         System.out.println(bstTree1.max());
+        bstTree1.put(7,"newNode");
+        System.out.println(bstTree1.get(7));
+        bstTree1.put(9,"nine");
+        System.out.println(bstTree1.get(9));
     }
 }

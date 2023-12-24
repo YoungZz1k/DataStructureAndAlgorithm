@@ -11,7 +11,7 @@ public class BSTTree1 {
     /**
      * 二叉搜索树节点类
      */
-    static class BSTNode{
+    static class BSTNode {
         int key;
         Object value;
         BSTNode left;
@@ -46,46 +46,48 @@ public class BSTTree1 {
 
     /**
      * 根据key找值
+     *
      * @param key 关键字
      * @return 值
      */
-    public Object get(int key){
+    public Object get(int key) {
         BSTNode node = root;
-        while (node != null){
-            if (node.key < key){
+        while (node != null) {
+            if (node.key < key) {
                 node = node.right;
-            }else if(node.key > key){
+            } else if (node.key > key) {
                 node = node.left;
-            }else{
+            } else {
                 return node.value;
             }
         }
         return null;
     }
 
-    private Object doGet(BSTNode node , int key){
-        if (node == null){
+    private Object doGet(BSTNode node, int key) {
+        if (node == null) {
             return null;// 结束递归
         }
-        if (node.key < key){
-            return doGet(node.right,key);// 向右
-        }else if(key < node.key){
-            return doGet(node.left,key);// 向左
-        }else{
+        if (node.key < key) {
+            return doGet(node.right, key);// 向右
+        } else if (key < node.key) {
+            return doGet(node.left, key);// 向左
+        } else {
             return node.value;// 找到
         }
     }
 
     /**
      * 获得最小的key的值
+     *
      * @return 返回最小的key的值
      */
-    public Object min(){
-        if (root == null){
+    public Object min() {
+        if (root == null) {
             return null;
         }
         BSTNode p = root;
-        while (p.left != null){
+        while (p.left != null) {
             p = p.left;
         }
         return p.value;
@@ -93,14 +95,15 @@ public class BSTTree1 {
 
     /**
      * 获得最大的key的值
+     *
      * @return 返回最大的key的值
      */
-    public Object max(){
-        if (root == null){
+    public Object max() {
+        if (root == null) {
             return null;
         }
         BSTNode p = root;
-        while (p.right != null){
+        while (p.right != null) {
             p = p.right;
         }
         return p.value;
@@ -108,37 +111,65 @@ public class BSTTree1 {
 
     /**
      * 增加值
-     * @param key 关键字
+     *
+     * @param key   关键字
      * @param value 值
      */
-    public void put(int key,Object value){
-
+    public void put(int key, Object value) {
+        BSTNode node = root;
+        BSTNode parent = null;
+        while (node != null) {
+            parent = node;
+            if (node.key < key) {
+                node = node.right;
+            } else if (node.key > key) {
+                node = node.left;
+            } else {
+                // 有 更新
+                node.value = value;
+                return;
+            }
+        }
+        BSTNode newNode = new BSTNode(key, value);
+        // 树空 建立根节点
+        if (parent == null) {
+            root = newNode;
+        }
+        // 没有 新增
+        if (parent.key > newNode.key) {
+            parent.left = newNode;
+        } else {
+            parent.right = newNode;
+        }
     }
 
     /**
      * 找到当前key的前任
+     *
      * @param key 关键字
      * @return 返回对应的值
      */
-    public Object successor(int key){
+    public Object successor(int key) {
         return null;
     }
 
     /**
      * 找到当前key的后继
+     *
      * @param key 关键字
      * @return 返回对应的值
      */
-    public Object predecessor(int key){
+    public Object predecessor(int key) {
         return null;
     }
 
     /**
      * 根据key删除节点
+     *
      * @param key
      * @return
      */
-    public Object delete(int key){
+    public Object delete(int key) {
         return null;
     }
 }
