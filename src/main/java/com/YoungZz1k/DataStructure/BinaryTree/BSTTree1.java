@@ -168,9 +168,9 @@ public class BSTTree1 {
         BSTNode ancestorFromLeft = null;
         while (node != null) {
             if (node.key < key) {
+                ancestorFromLeft = node;
                 node = node.right;
             } else if (node.key > key) {
-                ancestorFromLeft = node;
                 node = node.left;
             } else {
                 break;
