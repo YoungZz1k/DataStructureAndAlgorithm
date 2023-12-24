@@ -40,8 +40,27 @@ public class BSTTree1 {
      * @param key 关键字
      * @return 值
      */
+//    public Object get(int key){
+//        return doGet(root,key);
+//    }
+
+    /**
+     * 根据key找值
+     * @param key 关键字
+     * @return 值
+     */
     public Object get(int key){
-        return doGet(root,key);
+        BSTNode node = root;
+        while (node != null){
+            if (node.key < key){
+                node = node.right;
+            }else if(node.key > key){
+                node = node.left;
+            }else{
+                return node.value;
+            }
+        }
+        return null;
     }
 
     private Object doGet(BSTNode node , int key){
