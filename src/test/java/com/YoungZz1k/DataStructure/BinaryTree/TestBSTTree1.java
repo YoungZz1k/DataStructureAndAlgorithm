@@ -18,7 +18,7 @@ public class TestBSTTree1 {
         BSTTree1.BSTNode root = new BSTTree1.BSTNode(4, "root",n2,n6);
 
         bstTree1.root = root;
-        System.out.println(bstTree1.get(3).equals(n3));
+        System.out.println(bstTree1.get(3).toString());
         System.out.println(bstTree1.get(0));
     }
 }

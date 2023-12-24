@@ -53,7 +53,7 @@ public class BSTTree1 {
         }else if(key < node.key){
             return doGet(node.left,key);// 向左
         }else{
-            return node;// 找到
+            return node.value;// 找到
         }
     }
 
