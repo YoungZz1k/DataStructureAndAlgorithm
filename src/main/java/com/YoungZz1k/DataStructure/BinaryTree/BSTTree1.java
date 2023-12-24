@@ -83,10 +83,14 @@ public class BSTTree1 {
      * @return 返回最小的key的值
      */
     public Object min() {
-        if (root == null) {
+        return min(root);
+    }
+
+    public Object min(BSTNode node){
+        if (node == null) {
             return null;
         }
-        BSTNode p = root;
+        BSTNode p = node;
         while (p.left != null) {
             p = p.left;
         }
@@ -154,7 +158,29 @@ public class BSTTree1 {
      * @return 返回对应的值
      */
     public Object successor(int key) {
-        return null;
+        BSTNode node = root;
+        BSTNode ancestorFromRight = null;
+        while (node != null) {
+            if (node.key < key) {
+                node = node.right;
+            } else if (node.key > key) {
+                ancestorFromRight = node;
+                node = node.left;
+            } else {
+                break;
+            }
+        }
+        // 没找到节点
+        if (node == null) {
+            return null;
+        }
+        // 找到节点
+        // 情况一 当前节点有右子树 右子树的最小值就是当前节点的后继
+        if (node.right != null) {
+            return min(node.right);
+        }
+        // 情况二 当前节点无右子树 离他最近的 从右而来的祖先就是它的后继
+        return ancestorFromRight != null ? ancestorFromRight.value : null;
     }
 
     /**

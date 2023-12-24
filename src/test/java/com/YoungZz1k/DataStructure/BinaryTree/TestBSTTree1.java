@@ -25,5 +25,7 @@ public class TestBSTTree1 {
         System.out.println(bstTree1.get(7));
         bstTree1.put(9,"nine");
         System.out.println(bstTree1.get(9));
+        System.out.println(bstTree1.successor(2));
+        System.out.println(bstTree1.predecessor(2));
     }
 }
