@@ -99,10 +99,14 @@ public class BSTTree1 {
      * @return 返回最大的key的值
      */
     public Object max() {
-        if (root == null) {
+        return max(root);
+    }
+
+    public Object max(BSTNode node) {
+        if (node == null) {
             return null;
         }
-        BSTNode p = root;
+        BSTNode p = node;
         while (p.right != null) {
             p = p.right;
         }
@@ -144,7 +148,7 @@ public class BSTTree1 {
     }
 
     /**
-     * 找到当前key的前任
+     * 找到当前key的后继
      *
      * @param key 关键字
      * @return 返回对应的值
@@ -154,13 +158,35 @@ public class BSTTree1 {
     }
 
     /**
-     * 找到当前key的后继
+     * 找到当前key的前驱
      *
      * @param key 关键字
      * @return 返回对应的值
      */
     public Object predecessor(int key) {
-        return null;
+        BSTNode node = root;
+        BSTNode ancestorFromLeft = null;
+        while (node != null) {
+            if (node.key < key) {
+                node = node.right;
+            } else if (node.key > key) {
+                ancestorFromLeft = node;
+                node = node.left;
+            } else {
+                break;
+            }
+        }
+        // 没找到节点
+        if (node == null) {
+            return null;
+        }
+        // 找到节点
+        // 情况一 当前节点有左子树 左子树的最大值就是当前节点的前驱
+        if (node.left != null) {
+            return max(node.left);
+        }
+        // 情况二 当前节点无左子树 离他最近的 从左而来的祖先就是它的前驱
+        return ancestorFromLeft != null ? ancestorFromLeft.value : null;
     }
 
     /**
