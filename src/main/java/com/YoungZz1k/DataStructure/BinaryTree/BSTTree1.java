@@ -81,7 +81,14 @@ public class BSTTree1 {
      * @return 返回最小的key的值
      */
     public Object min(){
-        return null;
+        if (root == null){
+            return null;
+        }
+        BSTNode p = root;
+        while (p.left != null){
+            p = p.left;
+        }
+        return p.value;
     }
 
     /**
@@ -89,7 +96,14 @@ public class BSTTree1 {
      * @return 返回最大的key的值
      */
     public Object max(){
-        return null;
+        if (root == null){
+            return null;
+        }
+        BSTNode p = root;
+        while (p.right != null){
+            p = p.right;
+        }
+        return p.value;
     }
 
     /**

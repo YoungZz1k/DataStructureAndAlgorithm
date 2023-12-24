@@ -19,6 +19,7 @@ public class TestBSTTree1 {
 
         bstTree1.root = root;
         System.out.println(bstTree1.get(3).toString());
-        System.out.println(bstTree1.get(0));
+        System.out.println(bstTree1.min());
+        System.out.println(bstTree1.max());
     }
 }
