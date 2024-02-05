@@ -1,4 +1,4 @@
-package com.YoungZz1k.LeetCode.General;
+package com.YoungZz1k.LeetCode.General.String;
 
 /**
  * Z字形变换[mid]
