@@ -28,124 +28,72 @@ public class LeetCode76 {
      * 解释: t 中两个字符 'a' 均应包含在 s 的子串中，
      * 因此没有符合条件的子字符串，返回空字符串。
      */
-
-    public String minWindow(String s, String t) {
-        Map<String, Integer> map = new HashMap<>();// 记录t中各字符出现次数
-        Map<Integer, Integer> minMap = new HashMap<>(); // 记录s中覆盖t的字串的长度
-        int j = 0;
-        while (j < t.length()) { // 记录各字符出现次数
-            Integer orDefault = map.getOrDefault(String.valueOf(t.charAt(j)), 0);
-            orDefault++;
-            map.put(String.valueOf(t.charAt(j)), orDefault);
-            j++;
+    public String minWindow(String s, String t) { // 滑动窗口
+        int[] cnt = new int[128];
+        for (int i = 0; i < t.length(); i++) // 记录t中字符位置
+            cnt[t.charAt(i)]++;
+        int l = 0, r = 0, ansL = 0, ansR = 0, ans = Integer.MAX_VALUE, cntT = t.length();
+        while (r < s.length()) {
+            if (cnt[s.charAt(r++)]-- > 0)
+                cntT--;
+            while (cntT == 0) { // 当前窗口已经包含子串
+                if (r - l < ans) { // 当前窗口小于之前的记录 更新
+                    ans = r - l;
+                    ansL = l;
+                    ansR = r;
+                }
+                if (cnt[s.charAt(l++)]++ == 0) cntT++; // 移动左边界 判断移动的字符是否在t中 在则+1
+            }
         }
-        int left = 0;
-        int right = 0;
-        int min = Integer.MAX_VALUE;
-        int key = 0;
-        while (right < s.length()){
-            
-        }
-//        while (i < s.length()) { // 遍历
-//            k = i;
-//            Map<String, Integer> temp = new HashMap<>(map);
-//            while (k < s.length()) {
-//                Integer integer = minMap.get(key);
-//                if (integer != null && integer < (k - i)){
-//                    break;
-//                }
-//                String s1 = String.valueOf(s.charAt(k));
-//                Integer orDefault = temp.getOrDefault(s1, 0);
-//                if (orDefault == 0) {
-//                    k++;
-//                    continue;
-//                } else {
-//                    orDefault--;
-//                    temp.put(s1, orDefault);
-//                    boolean flag = false;
-//                    if (temp.values().stream().allMatch(item -> item == 0)) {
-//                        flag = true;
-//                    }
-//                    if (flag) {
-//                        minMap.put(i, k - i);
-//                        if (min > (k - i)){ // 更新最小覆盖索引
-//                            min = k - i;
-//                            key = i;
-//                        }
-//                        break;
-//                    }
-//                }
-//                k++;
-//            }
-//            i++;
-//        }
-
-        if (minMap.isEmpty()) {
-            return "";
-        }
-
-        return s.substring(key, key + min + 1);
+        return ans == Integer.MAX_VALUE ? "" : s.substring(ansL, ansR);
     }
 
-    // 时间复杂度： O(n2)
+
+    // HashMap + 滑动窗口
     public String minWindow1(String s, String t) {
-        Map<String, Integer> map = new HashMap<>();// 记录t中各字符出现次数
-        Map<Integer, Integer> minMap = new HashMap<>(); // 记录s中覆盖t的字串的长度
+        Map<Character, Integer> map = new HashMap<>();// 记录t中各字符出现次数
         int j = 0;
         while (j < t.length()) { // 记录各字符出现次数
-            Integer orDefault = map.getOrDefault(String.valueOf(t.charAt(j)), 0);
+            int orDefault = map.getOrDefault(t.charAt(j), 0).intValue();
             orDefault++;
-            map.put(String.valueOf(t.charAt(j)), orDefault);
+            map.put(t.charAt(j), orDefault);
             j++;
         }
         int i = 0;
         int k = 0;
         int min = Integer.MAX_VALUE;
+        int cnt = t.length();
         int key = 0;
-        while (i < s.length()) { // 遍历
-            k = i;
-            Map<String, Integer> temp = new HashMap<>(map);
-            while (k < s.length()) {
-                Integer integer = minMap.get(key);
-                if (integer != null && integer < (k - i)){
-                    break;
+        while (k < s.length()) {
+            char c = s.charAt(k++);
+            if (map.containsKey(c)){
+                map.put(c,map.get(c) - 1);
+                if (map.get(c) >= 0 ){
+                    cnt--;
                 }
-                String s1 = String.valueOf(s.charAt(k));
-                Integer orDefault = temp.getOrDefault(s1, 0);
-                if (orDefault == 0) {
-                    k++;
-                    continue;
-                } else {
-                    orDefault--;
-                    temp.put(s1, orDefault);
-                    boolean flag = false;
-                    if (temp.values().stream().allMatch(item -> item == 0)) {
-                        flag = true;
-                    }
-                    if (flag) {
-                        minMap.put(i, k - i);
-                        if (min > (k - i)){ // 更新最小覆盖索引
-                            min = k - i;
-                            key = i;
-                        }
-                        break;
-                    }
-                }
-                k++;
             }
-            i++;
+            while (cnt == 0) { // 当找到子串
+                if ((k - i ) < min) { // 更新最小窗口和起始索引
+                    min = k - i;
+                    key = i;
+                }
+                char c2 = s.charAt(i++);
+                // 移动左边界 判断移动的字符是否在t中 在则+1
+                if (map.containsKey(c2)){
+                    map.put(c2,map.get(c2) + 1);
+                    if (map.get(c2) > 0){
+                        cnt++;
+                    }
+                }
+            }
         }
 
-        if (minMap.isEmpty()) {
-            return "";
-        }
-
-        return s.substring(key, key + min + 1);
+        return min == Integer.MAX_VALUE ? "" : s.substring(key, key + min);
     }
 
     public static void main(String[] args) {
         LeetCode76 leetCode76 = new LeetCode76();
-        System.out.println(leetCode76.minWindow("ADOBECODEBANC", "ABC"));
+        System.out.println(leetCode76.minWindow1("ADOBECODEBANC", "ABC"));
         System.out.println(leetCode76.minWindow("a", "a"));
         System.out.println(leetCode76.minWindow("a", "aa"));
     }
